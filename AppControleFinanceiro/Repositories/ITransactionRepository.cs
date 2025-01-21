@@ -6,9 +6,8 @@ namespace AppControleFinanceiro.Repositories
     {
         void Add(Transaction transaction);
         void Delete(Transaction transaction);
-        void DeleteById(int id);
+        void Update(Transaction transaction);
         List<Transaction> GetAll();
         Transaction GetById(int id);
-        void Update(Transaction transaction);
     }
 }
