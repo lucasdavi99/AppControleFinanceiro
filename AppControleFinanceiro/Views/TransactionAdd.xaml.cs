@@ -55,10 +55,16 @@ public partial class TransactionAdd : ContentPage
             DisplayAlert("Erro", "Descrição é obrigatória", "OK");
         }
 
-        if (string.IsNullOrEmpty(EntryValue.Text) && !double.TryParse(EntryValue.Text, out double result))
+        if (!string.IsNullOrEmpty(EntryValue.Text) && !double.TryParse(EntryValue.Text, out double result))
         {
             valid = false;
             DisplayAlert("Erro", "Valor inválido", "OK");
+        }
+
+        if (!valid)
+        {
+            LabelError.IsVisible = true;
+            LabelError.Text = string.Empty;
         }
         return valid;
     }

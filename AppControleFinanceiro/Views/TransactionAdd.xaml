@@ -19,6 +19,7 @@
             </Grid>
         </Border>
 
+        <Label x:Name="LabelError" IsVisible="false" TextColor="Red" Margin="30,0"></Label>
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
             <RadioButton x:Name="RadioIncome" IsChecked="True" Content="Receita"  TextColor="Black"/>
             <RadioButton x:Name="RadioExpanse" HorizontalOptions="End" Grid.Column="1" Content="Despesa" TextColor="Black"/>

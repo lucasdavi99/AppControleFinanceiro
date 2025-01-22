@@ -4,21 +4,33 @@
              x:Class="AppControleFinanceiro.Views.TransactionList"
              NavigationPage.HasNavigationBar="False"
              Title="TransactionList">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Resources/Styles/Colors.xaml"></ResourceDictionary>
+    </ContentPage.Resources>
+
     <VerticalStackLayout>
-        <Grid ColumnDefinitions="50, *, Auto" Padding="15">
-            <Label Text="S" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
-            <VerticalStackLayout Grid.Column="1">
-                <Label Text="Salário" />
-                <Label Text="10/1/2025" TextColor="#BABABA"/>
-            </VerticalStackLayout>
-            <Label Text="R$ 1.000,00"  Grid.Column="2" VerticalOptions="Center" TextColor="{StaticResource Tertiary}"/>
-        </Grid>
+
+        <CollectionView x:Name="CollectionViewTransactions">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="50, *, Auto" Padding="15">
+                        <Label Text="S" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA"/>
+                        </VerticalStackLayout>
+                        <Label Text="{Binding Value, StringFormat='{0:C}'}"  Grid.Column="2" VerticalOptions="Center" TextColor="{StaticResource Tertiary}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
 
         <Button Text="Edit" Clicked="OnButtonClickedToTransactionEdit" />
 
         <Border Margin="10" Padding="15" StrokeShape="RoundRectangle 30" BackgroundColor="Black" Stroke="Transparent">
             <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
-                
+
                 <Label Text="Saldo" FontSize="18" TextColor="#979797"/>
                 <Label Text="R$ 2.000,00" FontSize="36" Grid.Row="1" TextColor="White"/>
 

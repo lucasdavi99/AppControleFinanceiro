@@ -1,17 +1,24 @@
+using AppControleFinanceiro.Repositories;
+
 namespace AppControleFinanceiro.Views;
 
 public partial class TransactionList : ContentPage
 {
     private readonly TransactionAdd _transactionAdd;
     private readonly TransactionEdit _transactionEdit;
+    private readonly ITransactionRepository _repository;
 
-	public TransactionList(TransactionAdd transactionAdd, TransactionEdit transactionEdit)
+
+    public TransactionList(TransactionAdd transactionAdd, TransactionEdit transactionEdit, ITransactionRepository repository)
 	{
-        this._transactionAdd = transactionAdd;
-        this._transactionEdit = transactionEdit;
+        _transactionAdd = transactionAdd;
+        _transactionEdit = transactionEdit;
+        _repository = repository;
 
         InitializeComponent();
-	}
+
+        CollectionViewTransactions.ItemsSource = _repository.GetAll();
+    }
 
     private void OnButtonClickedToTransactionAdd(object sender, EventArgs e)
     {

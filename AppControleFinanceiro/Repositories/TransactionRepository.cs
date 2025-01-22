@@ -12,9 +12,9 @@ namespace AppControleFinanceiro.Repositories
     {
         private readonly LiteDatabase _database;
 
-        public TransactionRepository() 
+        public TransactionRepository(LiteDatabase database) 
         {
-            _database =  new LiteDatabase("Filename=C:/");
+            _database = database;
         }
 
         public List<Transaction> GetAll()

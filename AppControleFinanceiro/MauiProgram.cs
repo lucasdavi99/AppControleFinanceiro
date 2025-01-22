@@ -34,6 +34,7 @@ namespace AppControleFinanceiro
                     return new LiteDatabase($"Filename={AppSettings.DatabaseFullPath}; Connection=Shared");
                 }
                 );
+            Console.WriteLine(AppSettings.DatabaseFullPath);
             builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
             return builder;
         }
