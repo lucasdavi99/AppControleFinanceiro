@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppControleFinanceiro.Views.TransactionList"
+             NavigationPage.HasNavigationBar="False"
+             Title="TransactionList">
+    <VerticalStackLayout>
+        <Grid ColumnDefinitions="50, *, Auto" Padding="15">
+            <Label Text="S" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
+            <VerticalStackLayout Grid.Column="1">
+                <Label Text="Salário" />
+                <Label Text="10/1/2025" TextColor="#BABABA"/>
+            </VerticalStackLayout>
+            <Label Text="R$ 1.000,00"  Grid.Column="2" VerticalOptions="Center" TextColor="{StaticResource Tertiary}"/>
+        </Grid>
+
+        <Button Text="Edit" Clicked="OnButtonClickedToTransactionEdit" />
+
+        <Border Margin="10" Padding="15" StrokeShape="RoundRectangle 30" BackgroundColor="Black" Stroke="Transparent">
+            <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
+                
+                <Label Text="Saldo" FontSize="18" TextColor="#979797"/>
+                <Label Text="R$ 2.000,00" FontSize="36" Grid.Row="1" TextColor="White"/>
+
+                <Button 
+                    Text="+" 
+                    FontSize="48" 
+                    HorizontalOptions="Center"  
+                    Padding="0"
+                    Grid.Column="1" 
+                    Grid.RowSpan="2" 
+                    HeightRequest="54" 
+                    WidthRequest="54" 
+                    CornerRadius="27"
+                    Clicked="OnButtonClickedToTransactionAdd" />
+
+                <Label Text="Receita" Grid.Row="3" TextColor="#979797"/>
+                <Label Text="R$ 900,00" Grid.Row="4" TextColor="White"/>
+
+                <Label Text="Despesa" Grid.Row="3" Grid.Column="1" TextColor="#979797"/>
+                <Label Text="R$ 480,00" Grid.Row="4" Grid.Column="1" TextColor="White"/>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>
