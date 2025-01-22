@@ -4,14 +4,17 @@ namespace AppControleFinanceiro
 {
     public partial class App : Application
     {
-        public App()
+        private readonly TransactionList _list;
+
+        public App(TransactionList list)
         {
             InitializeComponent();
+            _list = list;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NavigationPage(new TransactionList()));
+            return new Window(new NavigationPage(_list));
         }
     }
 }

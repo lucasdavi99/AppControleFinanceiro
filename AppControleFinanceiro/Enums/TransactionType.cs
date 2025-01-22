@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppControleFinanceiro.Enums
 {
-    internal enum TransactionType
+    public enum TransactionType
     {
         Income,
         Expense

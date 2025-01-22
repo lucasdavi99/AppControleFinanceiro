@@ -20,13 +20,14 @@
         </Border>
 
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
-            <RadioButton IsChecked="True" Content="Receita"  TextColor="Black"/>
-            <RadioButton HorizontalOptions="End" Grid.Column="1" Content="Despesa" TextColor="Black"/>
+            <RadioButton x:Name="RadioIncome" IsChecked="True" Content="Receita"  TextColor="Black"/>
+            <RadioButton x:Name="RadioExpanse" HorizontalOptions="End" Grid.Column="1" Content="Despesa" TextColor="Black"/>
         </Grid>
 
-        <Entry Placeholder="Nome" Margin="30, 10" />
-        <DatePicker Margin="30, 10" TextColor="Black" Format="dd/MM/yyyy"/>
-        <Entry Placeholder="Valor" Margin="30, 10" />
-        <Button Text="Salvar" Margin="30, 10" HorizontalOptions="Center"/>
+        <Entry x:Name="EntryName" Placeholder="Nome" Margin="30, 10" />
+        <DatePicker x:Name="DatePicker" Margin="30, 10" TextColor="Black" Format="dd/MM/yyyy"/>
+        <Entry x:Name="EntryValue" Placeholder="Valor" Margin="30, 10" />
+        
+        <Button Text="Salvar" Margin="30, 10" HorizontalOptions="Center" Clicked="OnButtonSave"/>
     </VerticalStackLayout>
 </ContentPage>
