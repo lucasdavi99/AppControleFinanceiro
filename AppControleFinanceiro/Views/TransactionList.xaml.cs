@@ -9,10 +9,8 @@ public partial class TransactionList : ContentPage
     private readonly ITransactionRepository _repository;
 
 
-    public TransactionList(TransactionAdd transactionAdd, TransactionEdit transactionEdit, ITransactionRepository repository)
+    public TransactionList(ITransactionRepository repository)
 	{
-        _transactionAdd = transactionAdd;
-        _transactionEdit = transactionEdit;
         _repository = repository;
 
         InitializeComponent();
@@ -22,11 +20,13 @@ public partial class TransactionList : ContentPage
 
     private void OnButtonClickedToTransactionAdd(object sender, EventArgs e)
     {
-        Navigation.PushModalAsync(_transactionAdd);
+        var transactionAdd = Handler.MauiContext.Services.GetService<TransactionAdd>();
+        Navigation.PushModalAsync(transactionAdd);
     }
 
     private void OnButtonClickedToTransactionEdit(object sender, EventArgs e)
     {
-        Navigation.PushModalAsync(_transactionEdit);
+        var transactionEdit = Handler.MauiContext.Services.GetService<TransactionEdit>();
+        Navigation.PushModalAsync(transactionEdit);
     }
 }

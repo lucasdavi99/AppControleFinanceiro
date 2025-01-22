@@ -12,7 +12,7 @@ namespace AppControleFinanceiro.Models
     {
         [BsonId]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public double Value { get; set; }
         public TransactionType Type { get; set; }
         public DateTimeOffset Date { get; set; }
