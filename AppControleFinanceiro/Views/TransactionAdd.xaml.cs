@@ -2,6 +2,7 @@
 using AppControleFinanceiro.Enums;
 using AppControleFinanceiro.Models;
 using AppControleFinanceiro.Repositories;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace AppControleFinanceiro.Views;
 
@@ -36,6 +37,8 @@ public partial class TransactionAdd : ContentPage
         };
 
         _repository.Add(transaction);
+
+        WeakReferenceMessenger.Default.Send<string>(string.Empty);
 
         Navigation.PopModalAsync();
     }
