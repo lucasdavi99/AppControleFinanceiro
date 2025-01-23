@@ -14,6 +14,10 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="50, *, Auto" Padding="15">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapToListEdit" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+
                         <Label Text="S" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
                         <VerticalStackLayout Grid.Column="1">
                             <Label Text="{Binding Name}" />
@@ -25,14 +29,12 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-
-        <Button Text="Edit" Clicked="OnButtonClickedToTransactionEdit" />
-
+        
         <Border Margin="10" Padding="15" StrokeShape="RoundRectangle 30" BackgroundColor="Black" Stroke="Transparent">
             <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
 
                 <Label Text="Saldo" FontSize="18" TextColor="#979797"/>
-                <Label Text="R$ 2.000,00" FontSize="36" Grid.Row="1" TextColor="White"/>
+                <Label x:Name="LabelBalance" FontSize="36" Grid.Row="1" TextColor="White"/>
 
                 <Button 
                     Text="+" 
@@ -47,10 +49,10 @@
                     Clicked="OnButtonClickedToTransactionAdd" />
 
                 <Label Text="Receita" Grid.Row="3" TextColor="#979797"/>
-                <Label Text="R$ 900,00" Grid.Row="4" TextColor="White"/>
+                <Label x:Name="LabelIncome" Grid.Row="4" TextColor="White"/>
 
                 <Label Text="Despesa" Grid.Row="3" Grid.Column="1" TextColor="#979797"/>
-                <Label Text="R$ 480,00" Grid.Row="4" Grid.Column="1" TextColor="White"/>
+                <Label x:Name="LabelExpense" Grid.Row="4" Grid.Column="1" TextColor="White"/>
             </Grid>
         </Border>
     </VerticalStackLayout>

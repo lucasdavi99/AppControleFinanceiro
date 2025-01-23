@@ -1,3 +1,4 @@
+using AppControleFinanceiro.Models;
 using AppControleFinanceiro.Repositories;
 using CommunityToolkit.Mvvm.Messaging;
 
@@ -19,7 +20,17 @@ public partial class TransactionList : ContentPage
 
     private void ReloadData()
     {
-        CollectionViewTransactions.ItemsSource = _repository.GetAll();
+
+        var items = _repository.GetAll();
+        CollectionViewTransactions.ItemsSource = items;
+
+        double income = items.Where(a => a.Type == Enums.TransactionType.Income).Sum(a => a.Value);
+        double expense = items.Where(a => a.Type == Enums.TransactionType.Expense).Sum(a => a.Value);
+        double balance = income - expense;
+
+        LabelIncome.Text = income.ToString("C");
+        LabelExpense.Text = expense.ToString("C");
+        LabelBalance.Text = balance.ToString("C");
     }
 
     private void OnButtonClickedToTransactionAdd(object sender, EventArgs e)
@@ -35,15 +46,21 @@ public partial class TransactionList : ContentPage
         }
     }
 
-    private void OnButtonClickedToTransactionEdit(object sender, EventArgs e)
+    private void TapToListEdit(object sender, TappedEventArgs e)
     {
-        var mauiContext = Handler?.MauiContext;
-        if (mauiContext != null)
+        var grid = (Grid)sender;
+        var gesture = (TapGestureRecognizer?)grid.GestureRecognizers[0];
+        if (gesture?.CommandParameter is Transaction transaction)
         {
-            var transactionEdit = mauiContext.Services.GetService<TransactionEdit>();
-            if (transactionEdit != null)
+            var mauiContext = Handler?.MauiContext;
+            if (mauiContext != null)
             {
-                Navigation.PushModalAsync(transactionEdit);
+                var transactionEdit = mauiContext.Services.GetService<TransactionEdit>();
+                transactionEdit?.SetTransactionToEdit(transaction);
+                if (transactionEdit != null)
+                {
+                    Navigation.PushModalAsync(transactionEdit);
+                }
             }
         }
     }
