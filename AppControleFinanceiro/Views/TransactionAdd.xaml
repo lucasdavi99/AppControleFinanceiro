@@ -13,7 +13,7 @@
                        Grid.Column="1" 
                        WidthRequest="17">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" />
+                        <TapGestureRecognizer Tapped="OnImageTappedToClose" />
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>

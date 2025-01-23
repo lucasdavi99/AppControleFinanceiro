@@ -13,7 +13,7 @@
                    Grid.Column="1" 
                    WidthRequest="17">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnImageTapped" />
+                        <TapGestureRecognizer Tapped="OnImageTappedToClose" />
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>
@@ -29,6 +29,6 @@
         <DatePicker x:Name="DatePicker" Margin="30, 10" TextColor="Black" Format="dd/MM/yyyy"/>
         <Entry x:Name="EntryValue" Placeholder="Valor" Margin="30, 10" />
 
-        <Button Text="Salvar" Margin="30, 10" HorizontalOptions="Center" />
+        <Button Text="Salvar" Margin="30, 10" HorizontalOptions="Center" Clicked="OnButtonSave"/>
     </VerticalStackLayout>
 </ContentPage>

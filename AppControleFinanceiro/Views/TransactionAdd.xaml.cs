@@ -16,7 +16,7 @@ public partial class TransactionAdd : ContentPage
         _repository = repository;
 	}
 
-    private void OnImageTapped(object sender, TappedEventArgs e)
+    private void OnImageTappedToClose(object sender, TappedEventArgs e)
     {
 		Navigation.PopModalAsync();
     }
