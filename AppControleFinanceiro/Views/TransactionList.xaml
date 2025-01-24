@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:AppControleFinanceiro.Libraries.Converters"
              x:Class="AppControleFinanceiro.Views.TransactionList"
              NavigationPage.HasNavigationBar="False"
              Title="TransactionList">
     <ContentPage.Resources>
         <ResourceDictionary Source="/Resources/Styles/Colors.xaml"></ResourceDictionary>
+        <ResourceDictionary>
+            <converters:ValueConverter x:Key="ValueConverter"/>
+            <converters:ValueToColorConverter x:Key="ValueToColorConverter"/>
+        </ResourceDictionary>
     </ContentPage.Resources>
 
     <VerticalStackLayout>
@@ -18,12 +23,17 @@
                             <TapGestureRecognizer Tapped="TapToListEdit" CommandParameter="{Binding .}" />
                         </Grid.GestureRecognizers>
 
-                        <Label Text="S" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
+                        <Border WidthRequest="40" HeightRequest="40" BackgroundColor="White" StrokeShape="RoundRectangle 20">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnButtonClickedToDelete" CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+                            <Label Text="X" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
+                        </Border>
                         <VerticalStackLayout Grid.Column="1">
                             <Label Text="{Binding Name}" />
                             <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA"/>
                         </VerticalStackLayout>
-                        <Label Text="{Binding Value, StringFormat='{0:C}'}"  Grid.Column="2" VerticalOptions="Center" TextColor="{StaticResource Tertiary}"/>
+                        <Label Text="{Binding ., StringFormat='{0:C}', Converter={StaticResource ValueConverter}}"  Grid.Column="2" VerticalOptions="Center" TextColor="{Binding ., Converter={StaticResource ValueToColorConverter}}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

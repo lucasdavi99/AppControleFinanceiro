@@ -64,4 +64,22 @@ public partial class TransactionList : ContentPage
             }
         }
     }
+
+    private async void OnButtonClickedToDelete(object sender, TappedEventArgs e)
+    {
+        var mainPage = Application.Current?.Windows[0]?.Page;
+        if (mainPage != null)
+        {
+            bool result = await mainPage.DisplayAlert("Excluir", "Você tem certeza que quer excluir?", "Sim", "Não");
+
+            if (result)
+            {
+                if (e.Parameter is Transaction transaction)
+                {
+                    _repository.Delete(transaction);
+                    ReloadData();
+                }
+            }
+        }
+    }
 }
